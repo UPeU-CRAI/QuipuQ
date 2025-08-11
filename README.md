@@ -10,7 +10,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Para guías completas, arquitectura y API, visita la [documentación](./docs).
+Para guías completas, variables de entorno y arquitectura visita la [documentación](./docs).
 
 ## Estructura del repositorio
 

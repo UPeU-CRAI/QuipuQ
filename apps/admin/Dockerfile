@@ -1,8 +1,10 @@
 # Build stage
 FROM node:20-alpine AS build
 WORKDIR /app
+COPY package.json ./
+RUN npm i -g pnpm && pnpm install
 COPY . .
-RUN npm i -g pnpm && pnpm install --prod && pnpm build
+RUN pnpm build
 
 # Runtime stage
 FROM nginx:alpine
