@@ -24,6 +24,7 @@ Sistema de Gestión de Colas de la UPeU.
 
 - [Product Requirements Document](docs/PRD.md)
 - [Historial de Versiones](CHANGELOG.md)
+- [Manual de Instalación con Docker](docs/INSTALACION_DOCKER.md)
 
 ## Requisitos
 
