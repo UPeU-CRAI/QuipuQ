@@ -1,21 +1,21 @@
-# Install dependencies
-FROM node:20-alpine AS deps
+FROM node:20-alpine AS base
 WORKDIR /app
-COPY package.json ./
-RUN npm i -g pnpm && pnpm install
+RUN corepack enable && corepack prepare pnpm@10.13.1 --activate
 
-# Build
-FROM node:20-alpine AS build
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+FROM base AS deps
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
+FROM deps AS build
 COPY . .
-RUN pnpm build
+RUN pnpm build --filter @quipuq/reniec-adapter
 
-# Runtime
-FROM node:20-alpine
+FROM node:20-alpine AS runtime
 WORKDIR /app
+RUN corepack enable && corepack prepare pnpm@10.13.1 --activate
+COPY --from=build /app/services/reniec-adapter/dist ./dist
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY services/reniec-adapter/package.json ./
+RUN pnpm install --prod --filter @quipuq/reniec-adapter --frozen-lockfile
 ENV NODE_ENV=production
-COPY --from=build /app/dist ./dist
-COPY package.json ./
-RUN npm i -g pnpm && pnpm install --prod
 CMD ["node", "dist/index.js"]
