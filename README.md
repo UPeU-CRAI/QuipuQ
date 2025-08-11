@@ -1,6 +1,16 @@
 # QuipuQ
 
-Monorepo para el Sistema de Gestión de Colas de la UPeU.
+Sistema de Gestión de Colas de la UPeU.
+
+> Versión actual: 0.0.1 — ver [Historial de Versiones](CHANGELOG.md)
+
+## Características
+
+- Monitores con visualización en tiempo real y plantillas personalizables.
+- Kiosco táctil para autogestión de turnos con integración a RENIEC.
+- Panel de operador para atención, cambio de colas y derivaciones.
+- Administración centralizada de colas, áreas, operadores y plantillas.
+- APIs REST para integración con sistemas internos y servicios externos.
 
 ## Estructura
 
@@ -9,6 +19,11 @@ Monorepo para el Sistema de Gestión de Colas de la UPeU.
 - `packages/` – paquetes compartidos (ui, types, sdk)
 - `infra/` – configuraciones de infraestructura (docker, nginx, db, k8s)
 - `docs/` – documentación (Docusaurus)
+
+## Documentación
+
+- [Product Requirements Document](docs/PRD.md)
+- [Historial de Versiones](CHANGELOG.md)
 
 ## Requisitos
 
