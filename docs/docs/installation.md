@@ -12,7 +12,7 @@ Este documento describe cómo preparar un entorno local de **QuipuQ** utilizando
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/your-org/QuipuQ.git
+   git clone https://github.com/UPeU-CRAI/QuipuQ.git
    cd QuipuQ
    ```
 
