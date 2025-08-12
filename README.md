@@ -7,7 +7,8 @@ Monorepo del sistema de gestión de colas **QuipuQ**.
 ```bash
 cd infra/docker
 cp .env.example .env
-docker compose up -d
+docker compose up -d --build
+./smoke.sh # optional smoke test
 ```
 
 Para guías completas, variables de entorno y arquitectura visita la [documentación](./docs).

@@ -80,6 +80,10 @@ services:
       dockerfile: apps/admin/Dockerfile
     ports:
       - '5173:80'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost']
+      interval: 10s
+      retries: 5
 
   operator:
     build:
@@ -87,6 +91,10 @@ services:
       dockerfile: apps/operator/Dockerfile
     ports:
       - '5174:80'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost']
+      interval: 10s
+      retries: 5
 
   kiosk:
     build:
@@ -94,6 +102,10 @@ services:
       dockerfile: apps/kiosk-touch/Dockerfile
     ports:
       - '5175:80'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost']
+      interval: 10s
+      retries: 5
 
   monitor:
     build:
@@ -101,6 +113,10 @@ services:
       dockerfile: apps/monitor/Dockerfile
     ports:
       - '5176:80'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost']
+      interval: 10s
+      retries: 5
 
   nginx:
     image: nginx:1.25
@@ -114,13 +130,13 @@ services:
       reniec-adapter:
         condition: service_healthy
       admin:
-        condition: service_started
+        condition: service_healthy
       operator:
-        condition: service_started
+        condition: service_healthy
       kiosk:
-        condition: service_started
+        condition: service_healthy
       monitor:
-        condition: service_started
+        condition: service_healthy
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://localhost']
       interval: 10s
