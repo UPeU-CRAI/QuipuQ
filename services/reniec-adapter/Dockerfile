@@ -14,8 +14,8 @@ FROM node:20-alpine AS runtime
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@10.13.1 --activate
 COPY --from=build /app/services/reniec-adapter/dist ./dist
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY services/reniec-adapter/package.json ./
-RUN pnpm install --prod --filter @quipuq/reniec-adapter --frozen-lockfile
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY services/reniec-adapter/package.json ./package.json
+RUN pnpm install --prod --frozen-lockfile --filter @quipuq/reniec-adapter
 ENV NODE_ENV=production
 CMD ["node", "dist/index.js"]
